@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Advanced Tool Website - Get in touch with our team for support, feedback, or questions about our tools.">
+    <meta name="keywords" content="contact, support, feedback, help, advanced tools, customer service">
+    <meta name="author" content="Advanced Tool Website">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact Us - Advanced Tool Website">
+    <meta property="og:description" content="Get in touch with our team for support, questions, or feedback about our productivity tools.">
+    <meta property="og:type" content="website">
+    
+    <!-- Title -->
+    <title>Contact Us - Advanced Tool Website</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Advanced Tool Website Home">
+                <i class="fas fa-bolt"></i> AdvancedTool
+            </a>
+            
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link" role="menuitem">Home</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="about.html" class="nav-link" role="menuitem">About Us</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="tools.html" class="nav-link" role="menuitem">Tools</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="contact.html" class="nav-link active" role="menuitem">Contact</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="faq.html" class="nav-link" role="menuitem">FAQ</a>
+                </li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                    🌙
+                </button>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="section" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); padding: 4rem 0 2rem;" aria-labelledby="contact-hero-title">
+            <div class="container text-center">
+                <h1 id="contact-hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Get In Touch</h1>
+                <p style="font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    Have questions, feedback, or need support? We'd love to hear from you. 
+                    Reach out and we'll get back to you as soon as possible.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-2" style="align-items: start;">
+                    <!-- Contact Form -->
+                    <div class="card" data-animate="slide-up">
+                        <h2 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-paper-plane" style="color: var(--primary-color);"></i>
+                            Send us a Message
+                        </h2>
+
+                        <form data-form="contact" id="contact-form">
+                            <div class="grid grid-2">
+                                <div class="form-group">
+                                    <label for="first-name" class="form-label">First Name *</label>
+                                    <input type="text" id="first-name" name="firstName" class="form-input" required 
+                                           placeholder="John" autocomplete="given-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="last-name" class="form-label">Last Name *</label>
+                                    <input type="text" id="last-name" name="lastName" class="form-input" required 
+                                           placeholder="Doe" autocomplete="family-name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-input" required 
+                                       placeholder="john.doe@example.com" autocomplete="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" 
+                                       placeholder="+1 (555) 123-4567" autocomplete="tel">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <select id="subject" name="subject" class="form-select" required>
+                                    <option value="">Please select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="feedback">Feedback & Suggestions</option>
+                                    <option value="bug-report">Bug Report</option>
+                                    <option value="feature-request">Feature Request</option>
+                                    <option value="partnership">Partnership Opportunity</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea id="message" name="message" class="form-textarea" required 
+                                          placeholder="Please describe your inquiry, question, or feedback in detail. The more information you provide, the better we can assist you."
+                                          rows="6"></textarea>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 2rem;">
+                                <label style="display: flex; align-items: start; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="newsletter" name="newsletter" style="margin-top: 0.25rem;">
+                                    <span style="font-size: var(--font-size-sm);">
+                                        I'd like to receive updates about new tools and features (optional)
+                                    </span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+
+                            <p style="font-size: var(--font-size-sm); color: var(--text-muted); text-align: center; margin-top: 1rem;">
+                                We typically respond within 24 hours during business days.
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div data-animate="fade-in" data-delay="200">
+                        <!-- Contact Methods -->
+                        <div class="card" style="margin-bottom: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-address-book" style="color: var(--primary-color);"></i>
+                                Contact Information
+                            </h3>
+
+                            <div style="margin-bottom: 2rem;">
+                                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                    <div style="background: var(--primary-color); color: white; width: 2.5rem; height: 2.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="margin: 0 0 0.25rem 0;">Email</h5>
+                                        <p style="margin: 0; color: var(--text-secondary);">contact@advancedtool.com</p>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                    <div style="background: var(--success-color); color: white; width: 2.5rem; height: 2.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="margin: 0 0 0.25rem 0;">Phone</h5>
+                                        <p style="margin: 0; color: var(--text-secondary);">+1 (555) 123-4567</p>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                    <div style="background: var(--accent-color); color: white; width: 2.5rem; height: 2.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="margin: 0 0 0.25rem 0;">Business Hours</h5>
+                                        <p style="margin: 0; color: var(--text-secondary);">Mon-Fri: 9AM-6PM PST</p>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center;">
+                                    <div style="background: #8b5cf6; color: white; width: 2.5rem; height: 2.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="margin: 0 0 0.25rem 0;">Location</h5>
+                                        <p style="margin: 0; color: var(--text-secondary);">San Francisco, CA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Response Times -->
+                        <div class="card" style="margin-bottom: 2rem;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-color);">
+                                <i class="fas fa-stopwatch"></i> Response Times
+                            </h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-primary); display: flex; justify-content: space-between;">
+                                    <span>General Inquiries</span>
+                                    <span style="font-weight: 600; color: var(--success-color);">24 hours</span>
+                                </li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-primary); display: flex; justify-content: space-between;">
+                                    <span>Technical Support</span>
+                                    <span style="font-weight: 600; color: var(--success-color);">12 hours</span>
+                                </li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-primary); display: flex; justify-content: space-between;">
+                                    <span>Bug Reports</span>
+                                    <span style="font-weight: 600; color: var(--warning-color);">6 hours</span>
+                                </li>
+                                <li style="padding: 0.5rem 0; display: flex; justify-content: space-between;">
+                                    <span>Critical Issues</span>
+                                    <span style="font-weight: 600; color: var(--error-color);">2 hours</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="card">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-color);">
+                                <i class="fas fa-share-alt"></i> Follow Us
+                            </h4>
+                            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                                Stay connected and get the latest updates about our tools and features.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Twitter" title="Follow us on Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="GitHub" title="View on GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="LinkedIn" title="Connect on LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Discord" title="Join our Discord">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Quick Links -->
+        <section class="section" style="background: var(--bg-secondary);" aria-labelledby="quick-help-title">
+            <div class="container">
+                <div class="text-center mb-3">
+                    <h2 id="quick-help-title" class="mb-1">Need Quick Help?</h2>
+                    <p class="text-secondary">Check out these resources for immediate assistance</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card text-center" data-animate="fade-in" data-delay="0">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3 class="feature-title">FAQ</h3>
+                        <p class="feature-description">
+                            Find answers to the most commonly asked questions about our tools and services.
+                        </p>
+                        <a href="faq.html" class="btn btn-secondary" style="margin-top: 1rem;">
+                            <i class="fas fa-arrow-right"></i> View FAQ
+                        </a>
+                    </div>
+
+                    <div class="card text-center" data-animate="fade-in" data-delay="200">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, var(--success-color), #10b981);">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="feature-title">Tool Guides</h3>
+                        <p class="feature-description">
+                            Learn how to use our tools effectively with step-by-step guides and tutorials.
+                        </p>
+                        <a href="tools.html" class="btn btn-secondary" style="margin-top: 1rem;">
+                            <i class="fas fa-arrow-right"></i> Explore Tools
+                        </a>
+                    </div>
+
+                    <div class="card text-center" data-animate="fade-in" data-delay="400">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, var(--accent-color), #d97706);">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3 class="feature-title">Report Issues</h3>
+                        <p class="feature-description">
+                            Found a bug or experiencing issues? Report them directly for quick resolution.
+                        </p>
+                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="fillBugReport()">
+                            <i class="fas fa-arrow-right"></i> Report Bug
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alternative Contact Methods -->
+        <section class="section" aria-labelledby="alt-contact-title">
+            <div class="container">
+                <div class="text-center mb-3">
+                    <h2 id="alt-contact-title" class="mb-1">Other Ways to Reach Us</h2>
+                    <p class="text-secondary">Choose the method that works best for you</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card" data-animate="slide-up" data-delay="0">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); width: 3rem; height: 3rem; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fab fa-discord" style="color: white; font-size: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin: 0; color: var(--text-primary);">Discord Community</h3>
+                                <p style="margin: 0; color: var(--text-muted); font-size: var(--font-size-sm);">Join our active community</p>
+                            </div>
+                        </div>
+                        <p style="margin-bottom: 1.5rem;">
+                            Join our Discord server to connect with other users, get quick help from the community, 
+                            and stay updated on the latest developments.
+                        </p>
+                        <a href="#" class="btn btn-primary">
+                            <i class="fab fa-discord"></i> Join Discord
+                        </a>
+                    </div>
+
+                    <div class="card" data-animate="slide-up" data-delay="200">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #10b981, #059669); width: 3rem; height: 3rem; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fab fa-github" style="color: white; font-size: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin: 0; color: var(--text-primary);">GitHub Issues</h3>
+                                <p style="margin: 0; color: var(--text-muted); font-size: var(--font-size-sm);">Report bugs and request features</p>
+                            </div>
+                        </div>
+                        <p style="margin-bottom: 1.5rem;">
+                            Report bugs, request features, or contribute to the project directly through our 
+                            GitHub repository. Perfect for technical discussions.
+                        </p>
+                        <a href="#" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo Column -->
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-bolt"></i> AdvancedTool
+                    </div>
+                    <p class="footer-description">
+                        Empowering productivity through innovative tools and solutions. 
+                        Built for modern workflows and designed with user experience in mind.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter" title="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub" title="View on GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn" title="Connect on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord" title="Join our Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Tools -->
+                <div class="footer-column">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="tools.html#code-formatter">Code Formatter</a></li>
+                        <li><a href="tools.html#text-utilities">Text Utilities</a></li>
+                        <li><a href="tools.html#calculator">Calculator</a></li>
+                        <li><a href="tools.html#data-converter">Data Converter</a></li>
+                        <li><a href="tools.html">All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="contact.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Advanced Tool Website. All rights reserved. Built with ❤️ for productivity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Fill bug report function
+        function fillBugReport() {
+            document.getElementById('subject').value = 'bug-report';
+            document.getElementById('message').value = 'I found a bug in the following tool:\n\nTool name: \nSteps to reproduce:\n1. \n2. \n3. \n\nExpected behavior:\n\nActual behavior:\n\nBrowser and version:\n\nAdditional information:';
+            document.getElementById('message').focus();
+        }
+    </script>
+</body>
+</html>

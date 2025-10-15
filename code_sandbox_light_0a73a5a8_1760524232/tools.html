@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Tools - Code formatter, text utilities, calculator, data converter and more productivity tools.">
+    <meta name="keywords" content="tools, code formatter, calculator, text utilities, data converter, productivity">
+    <meta name="author" content="Advanced Tool Website">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tools - Advanced Tool Website">
+    <meta property="og:description" content="Access powerful productivity tools including code formatter, calculator, and text utilities.">
+    <meta property="og:type" content="website">
+    
+    <!-- Title -->
+    <title>Tools - Advanced Tool Website</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Tool-specific styles -->
+    <style>
+        .tool-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-primary);
+        }
+        
+        .tool-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--border-radius);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .tool-sidebar {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .calc-btn {
+            padding: 1rem;
+            border: 1px solid var(--border-primary);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .calc-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .calc-btn.operator {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .calc-btn.equals {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .calc-display {
+            width: 100%;
+            padding: 1rem;
+            font-size: 2rem;
+            text-align: right;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-primary);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-editor {
+            width: 100%;
+            min-height: 300px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            padding: 1rem;
+            border: 1px solid var(--border-primary);
+            border-radius: var(--border-radius);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            resize: vertical;
+        }
+        
+        .converter-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .converter-arrows {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .hidden-tool {
+            display: none;
+        }
+        
+        .tool-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tool-nav-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-primary);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+        }
+        
+        .tool-nav-btn.active,
+        .tool-nav-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Advanced Tool Website Home">
+                <i class="fas fa-bolt"></i> AdvancedTool
+            </a>
+            
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link" role="menuitem">Home</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="about.html" class="nav-link" role="menuitem">About Us</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="tools.html" class="nav-link active" role="menuitem">Tools</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="contact.html" class="nav-link" role="menuitem">Contact</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="faq.html" class="nav-link" role="menuitem">FAQ</a>
+                </li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                    🌙
+                </button>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="section" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); padding: 4rem 0 2rem;" aria-labelledby="tools-hero-title">
+            <div class="container text-center">
+                <h1 id="tools-hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Advanced Tools</h1>
+                <p style="font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    Powerful, browser-based tools designed to enhance your productivity. 
+                    No installation required, no data sent to servers.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section class="section">
+            <div class="container">
+                <!-- Tool Navigation -->
+                <div class="tool-nav">
+                    <button class="tool-nav-btn active" data-tool="code-formatter">
+                        <i class="fas fa-code"></i> Code Formatter
+                    </button>
+                    <button class="tool-nav-btn" data-tool="text-utilities">
+                        <i class="fas fa-file-alt"></i> Text Utilities
+                    </button>
+                    <button class="tool-nav-btn" data-tool="calculator">
+                        <i class="fas fa-calculator"></i> Calculator
+                    </button>
+                    <button class="tool-nav-btn" data-tool="data-converter">
+                        <i class="fas fa-exchange-alt"></i> Data Converter
+                    </button>
+                </div>
+
+                <!-- Code Formatter Tool -->
+                <div id="code-formatter" class="tool-container">
+                    <div class="tool-header">
+                        <div class="tool-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <h2>Code Formatter & Beautifier</h2>
+                            <p style="margin: 0; color: var(--text-secondary);">Format and beautify your code with syntax highlighting</p>
+                        </div>
+                    </div>
+
+                    <div class="tool-grid">
+                        <div>
+                            <div style="margin-bottom: 1rem;">
+                                <label for="code-language" class="form-label">Programming Language:</label>
+                                <select id="code-language" class="form-select">
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="html">HTML</option>
+                                    <option value="css">CSS</option>
+                                    <option value="json">JSON</option>
+                                    <option value="xml">XML</option>
+                                    <option value="sql">SQL</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <label for="code-input" class="form-label">Input Code:</label>
+                                <textarea id="code-input" class="code-editor" placeholder="Paste your code here..."></textarea>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <button id="format-code" class="btn btn-primary">
+                                    <i class="fas fa-magic"></i> Format Code
+                                </button>
+                                <button id="minify-code" class="btn btn-secondary" style="margin-left: 0.5rem;">
+                                    <i class="fas fa-compress"></i> Minify
+                                </button>
+                                <button id="copy-formatted" class="btn btn-secondary" style="margin-left: 0.5rem;">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+
+                            <div>
+                                <label for="code-output" class="form-label">Formatted Code:</label>
+                                <textarea id="code-output" class="code-editor" readonly></textarea>
+                            </div>
+                        </div>
+
+                        <div class="tool-sidebar">
+                            <h4><i class="fas fa-cog"></i> Options</h4>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="checkbox" id="auto-format" checked style="margin-right: 0.5rem;">
+                                    Auto-format on paste
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="number" id="indent-size" value="2" min="1" max="8" style="width: 60px; margin-right: 0.5rem;">
+                                    Indent size
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="checkbox" id="remove-comments" style="margin-right: 0.5rem;">
+                                    Remove comments
+                                </label>
+                            </div>
+                            
+                            <hr style="margin: 1.5rem 0; border: none; height: 1px; background: var(--border-primary);">
+                            
+                            <h5><i class="fas fa-info-circle"></i> Features</h5>
+                            <ul style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                <li>Syntax highlighting</li>
+                                <li>Error detection</li>
+                                <li>Multiple languages</li>
+                                <li>Customizable formatting</li>
+                                <li>Minification support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Utilities Tool -->
+                <div id="text-utilities" class="tool-container hidden-tool">
+                    <div class="tool-header">
+                        <div class="tool-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <h2>Text Utilities & Manipulation</h2>
+                            <p style="margin: 0; color: var(--text-secondary);">Powerful text processing and manipulation tools</p>
+                        </div>
+                    </div>
+
+                    <div class="tool-grid">
+                        <div>
+                            <div style="margin-bottom: 1rem;">
+                                <label for="text-input" class="form-label">Input Text:</label>
+                                <textarea id="text-input" class="form-textarea" placeholder="Enter your text here..." style="min-height: 200px;"></textarea>
+                            </div>
+
+                            <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <button class="btn btn-primary" onclick="transformText('uppercase')">UPPERCASE</button>
+                                <button class="btn btn-primary" onclick="transformText('lowercase')">lowercase</button>
+                                <button class="btn btn-primary" onclick="transformText('title')">Title Case</button>
+                                <button class="btn btn-primary" onclick="transformText('sentence')">Sentence case</button>
+                                <button class="btn btn-secondary" onclick="transformText('reverse')">Reverse</button>
+                                <button class="btn btn-secondary" onclick="transformText('clean')">Clean Spaces</button>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <div class="grid grid-2">
+                                    <div>
+                                        <label for="find-text" class="form-label">Find:</label>
+                                        <input type="text" id="find-text" class="form-input" placeholder="Text to find">
+                                    </div>
+                                    <div>
+                                        <label for="replace-text" class="form-label">Replace:</label>
+                                        <input type="text" id="replace-text" class="form-input" placeholder="Replacement text">
+                                    </div>
+                                </div>
+                                <button class="btn btn-accent" onclick="findReplace()" style="margin-top: 0.5rem;">
+                                    <i class="fas fa-exchange-alt"></i> Find & Replace
+                                </button>
+                            </div>
+
+                            <div>
+                                <label for="text-output" class="form-label">Result:</label>
+                                <textarea id="text-output" class="form-textarea" readonly style="min-height: 150px;"></textarea>
+                                <button class="btn btn-secondary" onclick="copyTextOutput()" style="margin-top: 0.5rem;">
+                                    <i class="fas fa-copy"></i> Copy Result
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="tool-sidebar">
+                            <h4><i class="fas fa-chart-bar"></i> Text Statistics</h4>
+                            <div id="text-stats">
+                                <div style="margin-bottom: 0.5rem;">Characters: <span id="char-count">0</span></div>
+                                <div style="margin-bottom: 0.5rem;">Words: <span id="word-count">0</span></div>
+                                <div style="margin-bottom: 0.5rem;">Lines: <span id="line-count">0</span></div>
+                                <div style="margin-bottom: 0.5rem;">Paragraphs: <span id="paragraph-count">0</span></div>
+                            </div>
+                            
+                            <hr style="margin: 1.5rem 0; border: none; height: 1px; background: var(--border-primary);">
+                            
+                            <h5><i class="fas fa-tools"></i> Available Tools</h5>
+                            <ul style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                <li>Case conversion</li>
+                                <li>Text reversal</li>
+                                <li>Find & replace</li>
+                                <li>Word/character counting</li>
+                                <li>Whitespace cleaning</li>
+                                <li>Line sorting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator Tool -->
+                <div id="calculator" class="tool-container hidden-tool">
+                    <div class="tool-header">
+                        <div class="tool-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h2>Advanced Calculator</h2>
+                            <p style="margin: 0; color: var(--text-secondary);">Scientific calculator with advanced mathematical functions</p>
+                        </div>
+                    </div>
+
+                    <div class="tool-grid">
+                        <div>
+                            <input type="text" id="calc-display" class="calc-display" readonly value="0">
+                            
+                            <div class="calculator-grid">
+                                <button class="calc-btn" onclick="clearCalculator()">C</button>
+                                <button class="calc-btn" onclick="deleteLast()">⌫</button>
+                                <button class="calc-btn operator" onclick="appendToDisplay('/')">/</button>
+                                <button class="calc-btn operator" onclick="appendToDisplay('*')">×</button>
+                                
+                                <button class="calc-btn" onclick="appendToDisplay('7')">7</button>
+                                <button class="calc-btn" onclick="appendToDisplay('8')">8</button>
+                                <button class="calc-btn" onclick="appendToDisplay('9')">9</button>
+                                <button class="calc-btn operator" onclick="appendToDisplay('-')">-</button>
+                                
+                                <button class="calc-btn" onclick="appendToDisplay('4')">4</button>
+                                <button class="calc-btn" onclick="appendToDisplay('5')">5</button>
+                                <button class="calc-btn" onclick="appendToDisplay('6')">6</button>
+                                <button class="calc-btn operator" onclick="appendToDisplay('+')">+</button>
+                                
+                                <button class="calc-btn" onclick="appendToDisplay('1')">1</button>
+                                <button class="calc-btn" onclick="appendToDisplay('2')">2</button>
+                                <button class="calc-btn" onclick="appendToDisplay('3')">3</button>
+                                <button class="calc-btn equals" onclick="calculateResult()" style="grid-row: span 2;">=</button>
+                                
+                                <button class="calc-btn" onclick="appendToDisplay('0')" style="grid-column: span 2;">0</button>
+                                <button class="calc-btn" onclick="appendToDisplay('.')">.</button>
+                            </div>
+
+                            <div style="margin-top: 1rem;">
+                                <h4>Advanced Functions</h4>
+                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                                    <button class="btn btn-secondary" onclick="calculateFunction('sqrt')">√</button>
+                                    <button class="btn btn-secondary" onclick="calculateFunction('pow')">x²</button>
+                                    <button class="btn btn-secondary" onclick="calculateFunction('sin')">sin</button>
+                                    <button class="btn btn-secondary" onclick="calculateFunction('cos')">cos</button>
+                                    <button class="btn btn-secondary" onclick="calculateFunction('tan')">tan</button>
+                                    <button class="btn btn-secondary" onclick="calculateFunction('log')">log</button>
+                                    <button class="btn btn-secondary" onclick="calculateFunction('ln')">ln</button>
+                                    <button class="btn btn-secondary" onclick="appendToDisplay('(')">(</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tool-sidebar">
+                            <h4><i class="fas fa-history"></i> History</h4>
+                            <div id="calc-history" style="max-height: 200px; overflow-y: auto; font-family: monospace; font-size: 0.9rem;">
+                                <div style="color: var(--text-muted); text-align: center; padding: 1rem;">No calculations yet</div>
+                            </div>
+                            
+                            <button class="btn btn-secondary" onclick="clearHistory()" style="width: 100%; margin-top: 1rem;">
+                                Clear History
+                            </button>
+                            
+                            <hr style="margin: 1.5rem 0; border: none; height: 1px; background: var(--border-primary);">
+                            
+                            <h5><i class="fas fa-info-circle"></i> Functions</h5>
+                            <ul style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                <li>Basic arithmetic</li>
+                                <li>Square root & powers</li>
+                                <li>Trigonometric functions</li>
+                                <li>Logarithms</li>
+                                <li>Calculation history</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Converter Tool -->
+                <div id="data-converter" class="tool-container hidden-tool">
+                    <div class="tool-header">
+                        <div class="tool-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div>
+                            <h2>Data Format Converter</h2>
+                            <p style="margin: 0; color: var(--text-secondary);">Convert between JSON, XML, CSV, and other data formats</p>
+                        </div>
+                    </div>
+
+                    <div class="tool-grid">
+                        <div>
+                            <div class="converter-section">
+                                <label for="input-format" class="form-label">Input Format:</label>
+                                <select id="input-format" class="form-select">
+                                    <option value="json">JSON</option>
+                                    <option value="xml">XML</option>
+                                    <option value="csv">CSV</option>
+                                    <option value="yaml">YAML</option>
+                                </select>
+                            </div>
+
+                            <div class="converter-section">
+                                <label for="data-input" class="form-label">Input Data:</label>
+                                <textarea id="data-input" class="code-editor" placeholder="Paste your data here..."></textarea>
+                            </div>
+
+                            <div class="converter-arrows">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+
+                            <div class="converter-section">
+                                <label for="output-format" class="form-label">Output Format:</label>
+                                <select id="output-format" class="form-select">
+                                    <option value="json">JSON</option>
+                                    <option value="xml">XML</option>
+                                    <option value="csv">CSV</option>
+                                    <option value="yaml">YAML</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <button id="convert-data" class="btn btn-primary">
+                                    <i class="fas fa-sync-alt"></i> Convert Data
+                                </button>
+                                <button id="validate-data" class="btn btn-secondary" style="margin-left: 0.5rem;">
+                                    <i class="fas fa-check"></i> Validate
+                                </button>
+                                <button id="copy-converted" class="btn btn-secondary" style="margin-left: 0.5rem;">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+
+                            <div>
+                                <label for="data-output" class="form-label">Converted Data:</label>
+                                <textarea id="data-output" class="code-editor" readonly></textarea>
+                            </div>
+                        </div>
+
+                        <div class="tool-sidebar">
+                            <h4><i class="fas fa-cog"></i> Options</h4>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="checkbox" id="pretty-print" checked style="margin-right: 0.5rem;">
+                                    Pretty print output
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="checkbox" id="validate-input" checked style="margin-right: 0.5rem;">
+                                    Validate input format
+                                </label>
+                            </div>
+                            
+                            <hr style="margin: 1.5rem 0; border: none; height: 1px; background: var(--border-primary);">
+                            
+                            <h5><i class="fas fa-list"></i> Supported Formats</h5>
+                            <ul style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                <li>JSON - JavaScript Object Notation</li>
+                                <li>XML - Extensible Markup Language</li>
+                                <li>CSV - Comma Separated Values</li>
+                                <li>YAML - YAML Ain't Markup Language</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo Column -->
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-bolt"></i> AdvancedTool
+                    </div>
+                    <p class="footer-description">
+                        Empowering productivity through innovative tools and solutions. 
+                        Built for modern workflows and designed with user experience in mind.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter" title="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub" title="View on GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn" title="Connect on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord" title="Join our Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Tools -->
+                <div class="footer-column">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="#code-formatter">Code Formatter</a></li>
+                        <li><a href="#text-utilities">Text Utilities</a></li>
+                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#data-converter">Data Converter</a></li>
+                        <li><a href="tools.html">All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="contact.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Advanced Tool Website. All rights reserved. Built with ❤️ for productivity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/tools.js"></script>
+</body>
+</html>

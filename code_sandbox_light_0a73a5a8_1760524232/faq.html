@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FAQ - Frequently Asked Questions about Advanced Tool Website, our tools, privacy, and technical support.">
+    <meta name="keywords" content="FAQ, questions, answers, help, support, advanced tools, troubleshooting">
+    <meta name="author" content="Advanced Tool Website">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="FAQ - Advanced Tool Website">
+    <meta property="og:description" content="Find answers to frequently asked questions about our tools, features, and services.">
+    <meta property="og:type" content="website">
+    
+    <!-- Title -->
+    <title>FAQ - Advanced Tool Website</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- FAQ-specific styles -->
+    <style>
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all var(--transition-fast);
+        }
+        
+        .faq-question:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .faq-question.active {
+            color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+        
+        .faq-icon {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            transition: transform var(--transition-normal);
+        }
+        
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+        
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        .faq-answer-content {
+            padding-top: 1rem;
+            color: var(--text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+        
+        .faq-category-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: var(--border-radius);
+        }
+        
+        .faq-search {
+            margin-bottom: 3rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            font-size: var(--font-size-lg);
+            border: 2px solid var(--border-primary);
+            border-radius: var(--border-radius-lg);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: border-color var(--transition-fast);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+            display: none;
+        }
+        
+        .faq-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--border-radius);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 640px) {
+            .faq-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-question {
+                padding: 1rem;
+                font-size: var(--font-size-base);
+            }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Advanced Tool Website Home">
+                <i class="fas fa-bolt"></i> AdvancedTool
+            </a>
+            
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link" role="menuitem">Home</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="about.html" class="nav-link" role="menuitem">About Us</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="tools.html" class="nav-link" role="menuitem">Tools</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="contact.html" class="nav-link" role="menuitem">Contact</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="faq.html" class="nav-link active" role="menuitem">FAQ</a>
+                </li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                    🌙
+                </button>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="section" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); padding: 4rem 0 2rem;" aria-labelledby="faq-hero-title">
+            <div class="container text-center">
+                <h1 id="faq-hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
+                    Frequently Asked Questions
+                </h1>
+                <p style="font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    Find answers to common questions about our tools, features, and services. 
+                    Can't find what you're looking for? <a href="contact.html" style="color: var(--primary-color);">Contact us</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQ Content -->
+        <section class="section">
+            <div class="container">
+                <div class="faq-container">
+                    <!-- Search -->
+                    <div class="faq-search">
+                        <div style="position: relative;">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="faq-search" class="search-input" 
+                                   placeholder="Search for answers..." 
+                                   aria-label="Search FAQ">
+                        </div>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="faq-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">25+</div>
+                            <div style="color: var(--text-secondary);">Questions Answered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">95%</div>
+                            <div style="color: var(--text-secondary);">Issues Resolved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <div style="color: var(--text-secondary);">Self-Service</div>
+                        </div>
+                    </div>
+
+                    <!-- General Questions -->
+                    <div class="faq-category">
+                        <h2 class="faq-category-title">
+                            <i class="fas fa-question-circle"></i> General Questions
+                        </h2>
+
+                        <div class="faq-item" data-category="general">
+                            <button class="faq-question" aria-expanded="false">
+                                What is Advanced Tool Website?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Advanced Tool Website is a collection of powerful, browser-based productivity tools designed to enhance your workflow. Our tools include code formatters, text utilities, calculators, data converters, and more. All processing happens locally in your browser, ensuring your data stays private and secure.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="general">
+                            <button class="faq-question" aria-expanded="false">
+                                Are your tools free to use?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Yes! All our tools are completely free to use. There are no hidden costs, subscription fees, or premium tiers. We believe in providing accessible productivity tools for everyone.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="general">
+                            <button class="faq-question" aria-expanded="false">
+                                Do I need to create an account to use the tools?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    No account required! You can use all our tools immediately without signing up, providing personal information, or creating any accounts. Simply visit the tools page and start working.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="general">
+                            <button class="faq-question" aria-expanded="false">
+                                What browsers are supported?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Our tools work on all modern browsers including Chrome, Firefox, Safari, Edge, and Opera. We recommend using the latest version of your preferred browser for the best experience. Mobile browsers are also fully supported.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy & Security -->
+                    <div class="faq-category">
+                        <h2 class="faq-category-title">
+                            <i class="fas fa-shield-alt"></i> Privacy & Security
+                        </h2>
+
+                        <div class="faq-item" data-category="privacy">
+                            <button class="faq-question" aria-expanded="false">
+                                Is my data safe when using your tools?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Absolutely! All data processing happens entirely in your browser. We never upload, store, or transmit your data to our servers. Your files, text, and calculations remain completely private and never leave your device.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="privacy">
+                            <button class="faq-question" aria-expanded="false">
+                                Do you collect any personal information?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    We collect minimal, anonymous usage statistics to improve our tools (like which tools are most popular). We don't collect personal information, track individual users, or use invasive analytics. See our <a href="privacy.html" style="color: var(--primary-color);">Privacy Policy</a> for full details.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="privacy">
+                            <button class="faq-question" aria-expanded="false">
+                                Can I use these tools offline?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Most tools will continue to work if you temporarily lose internet connection after the page has loaded. However, you'll need an internet connection to initially load the website and tools. We're working on offline capabilities for future versions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="privacy">
+                            <button class="faq-question" aria-expanded="false">
+                                How do you ensure the security of your tools?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    We use HTTPS encryption for all connections, follow security best practices in our code, and regularly update our dependencies. Since all processing happens in your browser, there's no server-side data to compromise. We also encourage users to report any security concerns.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool-Specific Questions -->
+                    <div class="faq-category">
+                        <h2 class="faq-category-title">
+                            <i class="fas fa-tools"></i> Tool-Specific Questions
+                        </h2>
+
+                        <div class="faq-item" data-category="tools">
+                            <button class="faq-question" aria-expanded="false">
+                                Which programming languages does the Code Formatter support?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Our Code Formatter currently supports JavaScript, HTML, CSS, JSON, XML, and SQL. We're continuously adding support for more languages based on user feedback. If you need a specific language, please <a href="contact.html" style="color: var(--primary-color);">let us know</a>!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="tools">
+                            <button class="faq-question" aria-expanded="false">
+                                What's the maximum file size for text processing?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    There's no strict file size limit, but performance may vary based on your device's capabilities. We've tested files up to 10MB successfully. For very large files, consider breaking them into smaller chunks for better performance.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="tools">
+                            <button class="faq-question" aria-expanded="false">
+                                Can I save my calculator history?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    The calculator keeps a session history that you can view and reuse during your current visit. However, this history is not permanently saved and will be cleared when you close the browser. This ensures your calculations remain private.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="tools">
+                            <button class="faq-question" aria-expanded="false">
+                                What data formats does the Data Converter support?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Currently, we support JSON, XML, CSV, and YAML formats. You can convert between any of these formats. We're planning to add support for additional formats like TOML, INI, and more based on user demand.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Support -->
+                    <div class="faq-category">
+                        <h2 class="faq-category-title">
+                            <i class="fas fa-wrench"></i> Technical Support
+                        </h2>
+
+                        <div class="faq-item" data-category="support">
+                            <button class="faq-question" aria-expanded="false">
+                                What should I do if a tool isn't working?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    First, try refreshing the page or clearing your browser cache. Make sure you're using a modern browser with JavaScript enabled. If the problem persists, please <a href="contact.html" style="color: var(--primary-color);">contact us</a> with details about your browser, the specific tool, and the issue you're experiencing.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="support">
+                            <button class="faq-question" aria-expanded="false">
+                                Why is the dark mode not saving my preference?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Theme preferences are saved in your browser's local storage. If they're not persisting, check if you have local storage enabled and if you're not browsing in incognito/private mode. Some browser extensions may also interfere with local storage.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="support">
+                            <button class="faq-question" aria-expanded="false">
+                                Can I report bugs or request new features?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Absolutely! We welcome bug reports and feature requests. You can use our <a href="contact.html" style="color: var(--primary-color);">contact form</a> to report issues or suggest improvements. We review all submissions and prioritize based on user impact and feasibility.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="support">
+                            <button class="faq-question" aria-expanded="false">
+                                How quickly do you respond to support requests?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    We aim to respond to all inquiries within 24 hours during business days. Bug reports and critical issues are prioritized and typically receive responses within 2-6 hours. For fastest support, use our contact form with detailed information about your issue.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features & Updates -->
+                    <div class="faq-category">
+                        <h2 class="faq-category-title">
+                            <i class="fas fa-rocket"></i> Features & Updates
+                        </h2>
+
+                        <div class="faq-item" data-category="features">
+                            <button class="faq-question" aria-expanded="false">
+                                How often do you add new tools and features?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    We continuously improve existing tools and add new ones based on user feedback and industry needs. Major updates are released quarterly, with smaller improvements and bug fixes deployed more frequently. Follow us on social media for the latest updates.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="features">
+                            <button class="faq-question" aria-expanded="false">
+                                Will you add mobile apps for your tools?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Our website is fully responsive and works excellently on mobile devices. Currently, we're focused on improving the web experience rather than developing native apps. The web version provides the same functionality across all devices without requiring downloads.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="features">
+                            <button class="faq-question" aria-expanded="false">
+                                Can I customize the tools for my specific needs?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Many of our tools include customization options like indent size, formatting preferences, and output formats. We're working on expanding customization features. If you have specific requirements, please reach out – we love hearing about unique use cases!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="features">
+                            <button class="faq-question" aria-expanded="false">
+                                Is the source code available?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    We're considering open-sourcing parts of our codebase in the future. Currently, the tools are proprietary, but we believe in transparency and may release certain components as open-source projects. Stay tuned for updates on this initiative.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div class="no-results" id="no-results">
+                        <i class="fas fa-search" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+                        <h3>No results found</h3>
+                        <p>Try different keywords or <a href="contact.html" style="color: var(--primary-color);">contact us</a> for help.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Still Have Questions -->
+        <section class="section" style="background: var(--bg-secondary);" aria-labelledby="more-help-title">
+            <div class="container text-center">
+                <h2 id="more-help-title" class="mb-2">Still Have Questions?</h2>
+                <p class="mb-3" style="color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Can't find what you're looking for? Our team is here to help! 
+                    Reach out and we'll get back to you as quickly as possible.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-envelope"></i> Contact Support
+                    </a>
+                    <a href="tools.html" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-tools"></i> Try Our Tools
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo Column -->
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-bolt"></i> AdvancedTool
+                    </div>
+                    <p class="footer-description">
+                        Empowering productivity through innovative tools and solutions. 
+                        Built for modern workflows and designed with user experience in mind.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter" title="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub" title="View on GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn" title="Connect on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord" title="Join our Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Tools -->
+                <div class="footer-column">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="tools.html#code-formatter">Code Formatter</a></li>
+                        <li><a href="tools.html#text-utilities">Text Utilities</a></li>
+                        <li><a href="tools.html#calculator">Calculator</a></li>
+                        <li><a href="tools.html#data-converter">Data Converter</a></li>
+                        <li><a href="tools.html">All Tools</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="contact.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Advanced Tool Website. All rights reserved. Built with ❤️ for productivity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // FAQ functionality
+        class FAQManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupFAQToggles();
+                this.setupSearch();
+            }
+
+            setupFAQToggles() {
+                const questions = document.querySelectorAll('.faq-question');
+                
+                questions.forEach(question => {
+                    question.addEventListener('click', () => {
+                        const answer = question.nextElementSibling;
+                        const isActive = question.classList.contains('active');
+
+                        // Close all other FAQs
+                        questions.forEach(q => {
+                            q.classList.remove('active');
+                            q.nextElementSibling.classList.remove('active');
+                            q.setAttribute('aria-expanded', 'false');
+                        });
+
+                        // Toggle current FAQ
+                        if (!isActive) {
+                            question.classList.add('active');
+                            answer.classList.add('active');
+                            question.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                });
+            }
+
+            setupSearch() {
+                const searchInput = document.getElementById('faq-search');
+                const faqItems = document.querySelectorAll('.faq-item');
+                const noResults = document.getElementById('no-results');
+
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase();
+                    let visibleCount = 0;
+
+                    faqItems.forEach(item => {
+                        const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                        const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+
+                        if (question.includes(query) || answer.includes(query)) {
+                            item.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    // Show/hide no results message
+                    if (visibleCount === 0 && query.trim() !== '') {
+                        noResults.style.display = 'block';
+                    } else {
+                        noResults.style.display = 'none';
+                    }
+
+                    // Show/hide categories based on visible items
+                    document.querySelectorAll('.faq-category').forEach(category => {
+                        const visibleItems = category.querySelectorAll('.faq-item[style*="block"], .faq-item:not([style*="none"])');
+                        if (query.trim() === '' || visibleItems.length > 0) {
+                            category.style.display = 'block';
+                        } else {
+                            category.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize FAQ when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => new FAQManager());
+        } else {
+            new FAQManager();
+        }
+    </script>
+</body>
+</html>
